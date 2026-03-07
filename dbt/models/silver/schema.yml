@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: silver_taxi_zone_lookup_clean
+    description: "Clean taxi zone lookup from bronze"
+    columns:
+      - name: locationid
+        tests:
+          - not_null
+          - unique
+
+  - name: silver_trips_clean
+    description: "Cleaned and enriched NYC TLC trips from bronze"
+    columns:
+      - name: pickup_ts
+        tests:
+          - not_null
+      - name: dropoff_ts
+        tests:
+          - not_null
+      - name: pulocationid
+        tests:
+          - not_null
+      - name: dolocationid
+        tests:
+          - not_null

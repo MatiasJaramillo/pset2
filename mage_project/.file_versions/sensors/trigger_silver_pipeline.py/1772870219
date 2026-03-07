@@ -1,0 +1,6 @@
+from mage_ai.data_preparation.variable_manager import get_variable
+from mage_ai.orchestration.triggers.api import trigger_pipeline
+
+def check_condition(*args, **kwargs):
+    trigger_pipeline('dbt_build_silver')
+    return True

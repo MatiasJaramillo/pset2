@@ -1,0 +1,21 @@
+name: 'nyc_tlc_dbt'
+version: '1.0.0'
+config-version: 2
+
+profile: 'nyc_tlc_dbt'
+
+model-paths: ["models"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  nyc_tlc_dbt:
+    silver:
+      +materialized: view
+      +schema: silver
+
+    gold:
+      +materialized: table
+      +schema: gold
