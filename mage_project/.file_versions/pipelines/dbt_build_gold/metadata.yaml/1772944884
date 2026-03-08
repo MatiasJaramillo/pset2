@@ -2,18 +2,19 @@ blocks:
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
-  downstream_blocks: []
+  downstream_blocks:
+  - trigger_quality_checks
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: test_postgres_connection
+  name: run_partition_load_scripts
   retry_config: null
   status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
-  uuid: test_postgres_connection
+  uuid: run_partition_load_scripts
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
@@ -22,25 +23,41 @@ blocks:
   executor_type: local_python
   has_callback: false
   language: python
-  name: create_schemas
+  name: run_partition_create_scripts
   retry_config: null
   status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
-  uuid: create_schemas
+  uuid: run_partition_create_scripts
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: trigger_quality_checks
+  retry_config: null
+  status: updated
+  timeout: null
+  type: sensor
+  upstream_blocks:
+  - run_partition_load_scripts
+  uuid: trigger_quality_checks
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
 conditionals: []
-created_at: '2026-02-24 02:40:42.089982+00:00'
+created_at: '2026-03-07 07:26:34.133617+00:00'
 data_integration: null
 description: null
 executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: setup_check
+name: dbt_build_gold
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -50,6 +67,6 @@ settings:
 spark_config: {}
 tags: []
 type: python
-uuid: setup_check
+uuid: dbt_build_gold
 variables_dir: /home/src/mage_data/src
 widgets: []
